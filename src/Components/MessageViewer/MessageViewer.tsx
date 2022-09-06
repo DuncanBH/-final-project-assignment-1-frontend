@@ -1,4 +1,3 @@
-import React from "react";
 import MessageContainer from "./MessageContainer/MessageContainer";
 
 export type MessageViewerProps = {
@@ -24,15 +23,6 @@ const MessageViewer: React.FC<MessageViewerProps> = (props) => {
                                       attachments={message.messageAttachments} />
                 </div>)
             })}
-            {/*<MessageContainer message={{body: "Hi", author: "Epic Gamer"}} />*/}
-            {/*<MessageContainer message={{body: "Hello", author: "Qwerty"}} attachments={[*/}
-            {/*    "https://pbs.twimg.com/media/E-IXew-XEAQrZpy.jpg:large",*/}
-            {/*    "https://pbs.twimg.com/media/E-IXew-XEAQrZpy.jpg:large",*/}
-            {/*    "https://pbs.twimg.com/media/E-IXew-XEAQrZpy.jpg:large",*/}
-            {/*    "https://pbs.twimg.com/media/E-IXew-XEAQrZpy.jpg:large",*/}
-            {/*    "https://pbs.twimg.com/media/E-IXew-XEAQrZpy.jpg:large"*/}
-            {/*]} />*/}
-            {/*<MessageContainer message={{body: "Good morning", author: "JJ"}} />*/}
         </div>
     )
 }
