@@ -1,0 +1,16 @@
+{
+  "channelId": 0,
+  "messageId": 0,
+  "messageAuthorId" : "username or numerical ID",
+  "messageBody" : "user string",
+  "messageAttachments": [
+    {
+      "attachmentId": 0,
+      "content" : "some bytes/a url"
+    },
+    {
+      "attachmentId": 1,
+      "content" : "some bytes/a url"
+    }
+  ]
+}
