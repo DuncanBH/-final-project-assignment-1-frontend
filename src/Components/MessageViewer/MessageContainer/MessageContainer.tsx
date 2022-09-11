@@ -13,11 +13,10 @@ export type MessageContainerProps = {
  */
 const MessageContainer: React.FC<MessageContainerProps> = props => {
 
-
     return (
         <div>
             <MessageDisplay body={props.message.body} author={props.message.author} />
-            {props.attachments && (<div>img:<AttachmentDisplay attachment={props.attachments} /></div>)}
+            {props.attachments && (<AttachmentDisplay attachment={props.attachments} />)}
         </div>
     );
 }

@@ -1,8 +1,8 @@
 import React from "react";
+import {Button, Form} from "react-bootstrap";
 
 export type MessageFieldProps = {
-    body: string;
-    author: string;
+    user: string;
 }
 
 /***
@@ -12,8 +12,11 @@ export type MessageFieldProps = {
 const MessageField : React.FC<MessageFieldProps> = props => {
     return (
         <div>
-            <h5>{props.author}</h5>
-            <p>{props.body}</p>
+            <Form>
+                <input type={"text"}/>
+                <input type="file" name="uploadedFile"/>
+                <Button>Submit</Button>
+            </Form>
         </div>
     );
 }

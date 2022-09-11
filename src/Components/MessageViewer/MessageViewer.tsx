@@ -1,5 +1,6 @@
 import MessageContainer from "./MessageContainer/MessageContainer";
 import {useEffect, useState} from "react";
+import MessageField from "./MessageContainer/MessageField/MessageField";
 
 export type MessageViewerProps = {
     channelId: number;
@@ -8,6 +9,11 @@ export type MessageViewerProps = {
 // import * as data from "../../dataformat.json" assert {type: 'json'}; //cool experimental syntax - requires config
 // let data = require("../../testdata.json");
 
+/***
+ * Container for entire message system
+ * @param props
+ * @constructor
+ */
 const MessageViewer: React.FC<MessageViewerProps> = (props) => {
 
     const [messagesState, setMessagesState] = useState([]);
@@ -35,17 +41,37 @@ const MessageViewer: React.FC<MessageViewerProps> = (props) => {
     const hasMessages = messagesState.length > 0;
 
     return (
-        <div>
-            {(props.channelId) ? (<h1>Welcome to channel {props.channelId}</h1>) : (<h1>Home</h1>)}
+        <div className={"container-fluid d-flex flex-column vh-100 overflow-hidden"}>
 
-            {hasMessages ?
-                messagesState.map((message: any) => {
-                    return (<div>
-                        <MessageContainer message={{body: message.caption, author: "Anonymous User" /*TODO: Add support for authors*/}}
-                                          attachments={message.imageId} />
-                    </div>)
-                })
-                : <img src="https://c.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" alt={"Loading..."}/>}
+            <h1 className={"px-0 flex-shrink-0"}>
+                {(props.channelId) ? (`Welcome to channel ${props.channelId}`) : ("Home")}
+            </h1>
+
+            {props.channelId ?
+                (<div className={"row flex-grow-1 overflow-hidden"}>
+                    <div className={"mh-100 overflow-auto py-2 flex-column"}>
+                        {hasMessages ?
+                            messagesState.map((message: any) => {
+                                return (<div className={"border"}>
+                                    <MessageContainer message={{
+                                        body: message.caption,
+                                        author: "Anonymous User" /*TODO: Add support for authors*/
+                                    }}
+                                                      attachments={message.imageId} />
+                                </div>)
+                            })
+                            : <img src="https://c.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" alt={"Loading..."} />}
+                    </div>
+                </div>)
+                :
+                (<div>Home Page</div>)
+            }
+
+            {(props.channelId != 0) &&
+                <div className={"row flex-shrink-0 bg-light"}>
+                    <MessageField user={"Anonymous User"} />
+                </div>
+            }
         </div>
     )
 }
