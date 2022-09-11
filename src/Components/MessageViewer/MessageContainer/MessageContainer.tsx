@@ -4,7 +4,7 @@ import AttachmentDisplay from "./AttachmentDisplay/AttachmentDisplay";
 
 export type MessageContainerProps = {
     message: MessageDisplayProps;
-    attachments?: string[];
+    attachments?: string;
 }
 
 /***
@@ -17,12 +17,7 @@ const MessageContainer: React.FC<MessageContainerProps> = props => {
     return (
         <div>
             <MessageDisplay body={props.message.body} author={props.message.author} />
-            {props.attachments &&
-                props.attachments.map((attachment) => {
-                    return (<AttachmentDisplay attachment={attachment} />);
-                })
-            }
-
+            {props.attachments && (<div>img:<AttachmentDisplay attachment={props.attachments} /></div>)}
         </div>
     );
 }

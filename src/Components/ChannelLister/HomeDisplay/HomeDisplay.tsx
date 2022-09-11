@@ -1,19 +1,19 @@
 import React from "react";
-import "./ChannelDisplay.css"
+// import "./HomeDisplay.css"
 import {Button} from "react-bootstrap";
 
-export type ChannelSelectorProps = {
+export type HomeSelectorProps = {
     channelId: number;
     onClickCallback: (id: number) => void;
 }
 
-const ChannelDisplay: React.FC<ChannelSelectorProps> = (props) => {
+const HomeDisplay: React.FC<HomeSelectorProps> = (props) => {
     return (
         <Button className="btn btn-secondary m-2"
                 onClick={() => props.onClickCallback(props.channelId)}>
-            Channel #{props.channelId}
+            Home
         </Button>
     )
 }
 
-export default ChannelDisplay;
+export default HomeDisplay;
