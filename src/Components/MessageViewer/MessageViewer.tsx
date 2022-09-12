@@ -18,6 +18,11 @@ const MessageViewer: React.FC<MessageViewerProps> = (props) => {
 
     const [messagesState, setMessagesState] = useState([]);
 
+    const [newMessage, setNewMessage] = useState(false);
+    if (newMessage) {
+        setNewMessage(false);
+    }
+
     useEffect(() => {
         // alert(`http://localhost:8080/api/channel/${props.channelId}/posts`);
 
@@ -43,7 +48,7 @@ const MessageViewer: React.FC<MessageViewerProps> = (props) => {
     return (
         <div className={"container-fluid d-flex flex-column vh-100 overflow-hidden"}>
 
-            <h1 className={"px-0 flex-shrink-0"}>
+            <h1 className={"px-0 flex-shrink-0 p-1"}>
                 {(props.channelId) ? (`Welcome to channel ${props.channelId}`) : ("Home")}
             </h1>
 
@@ -52,7 +57,8 @@ const MessageViewer: React.FC<MessageViewerProps> = (props) => {
                     <div className={"mh-100 overflow-auto py-2 flex-column"}>
                         {hasMessages ?
                             messagesState.map((message: any) => {
-                                return (<div className={"border"}>
+                                return (<div className={"p-1"}>
+                                    <hr/>
                                     <MessageContainer message={{
                                         body: message.caption,
                                         author: "Anonymous User" /*TODO: Add support for authors*/
@@ -67,9 +73,9 @@ const MessageViewer: React.FC<MessageViewerProps> = (props) => {
                 (<div>Home Page</div>)
             }
 
-            {(props.channelId != 0) &&
-                <div className={"row flex-shrink-0 bg-light"}>
-                    <MessageField user={"Anonymous User"} />
+            {(props.channelId !== 0) &&
+                <div className={"row flex-shrink-0"}>
+                    <MessageField channelId={props.channelId} user={"Anonymous User"} updateCallback={(update) => setNewMessage(update)} />
                 </div>
             }
         </div>
